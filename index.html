@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skewer - SKU Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            width: 100%;
+            max-width: 450px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #ffd700;
+            padding-bottom: 10px;
+        }
+
+        h1 {
+            color: #ffd700;
+            margin: 0;
+            font-size: 24px;
+        }
+
+        nav a {
+            color: #cccccc;
+            text-decoration: none;
+            margin-left: 10px;
+            font-weight: bold;
+        }
+
+        nav a.active, nav a:hover {
+            color: #ffd700;
+        }
+
+        .card {
+            background-color: #1e1e1e;
+            border: 2px solid #ffd700;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 450px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        h2 {
+            color: #ffd700;
+            margin-top: 0;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #ffd700;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            background-color: #2b2b2b;
+            color: #ffffff;
+            border: 1px solid #ffd700;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            background-color: #ffd700;
+            color: #000000;
+            border: none;
+            padding: 10px;
+            font-weight: bold;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #e6c200;
+        }
+
+        .output {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #2b2b2b;
+            border: 1px dashed #ffd700;
+            text-align: center;
+            font-weight: bold;
+            color: #ffd700;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Skewer</h1>
+        <nav>
+            <a href="index.html" class="active">SKU Generator</a> | 
+            <a href="receipt.html">Receipt Generator</a>
+        </nav>
+    </header>
+
+    <div class="card">
+        <h2>SKU Generator</h2>
+        
+        <label for="category">Category</label>
+        <select id="category">
+            <option value="Perishables">Perishables</option>
+            <option value="Beverages">Beverages</option>
+            <option value="Snacks">Snacks</option>
+        </select>
+
+        <label for="product_name">Product Name</label>
+        <input type="text" id="product_name" placeholder="e.g. Bottled Water">
+
+        <label for="quantity">Stock Quantity</label>
+        <input type="number" id="quantity" placeholder="e.g. 50">
+
+        <button onclick="generateSKU()">Generate SKU</button>
+
+        <div class="output" id="sku_output">Your generated SKU will appear here.</div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
