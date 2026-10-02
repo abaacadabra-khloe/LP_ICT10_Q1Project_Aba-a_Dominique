@@ -3,115 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Skills Test - 1st Quarter</title>
+  <title>skills test</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #121212;
-      color: #ffffff;
-      margin: 0;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    header {
-      width: 100%;
-      max-width: 450px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-      border-bottom: 2px solid #ffd700;
-      padding-bottom: 10px;
-    }
-
-    h1 {
-      color: #ffd700;
-      margin: 0;
-      font-size: 24px;
-    }
-
-    nav a {
-      color: #cccccc;
-      text-decoration: none;
-      margin-left: 10px;
-      font-weight: bold;
-    }
-
-    nav a.active, nav a:hover {
-      color: #ffd700;
-    }
-
-    .card {
-      background-color: #1e1e1e;
-      border: 2px solid #ffd700;
-      border-radius: 10px;
-      width: 100%;
-      max-width: 450px;
-      padding: 20px;
-      box-sizing: border-box;
-    }
-
-    h2 {
-      color: #ffd700;
-      margin-top: 0;
-      text-align: center;
-      font-size: 20px;
-    }
-
-    .item-row {
-      display: flex;
-      justify-content: space-between;
-      margin: 10px 0;
-      padding-bottom: 5px;
-      border-bottom: 1px solid #333333;
-    }
-
-    label {
-      cursor: pointer;
-      font-weight: bold;
-      color: #ffffff;
-    }
-
-    button {
-      width: 100%;
-      background-color: #ffd700;
-      color: #000000;
-      border: none;
-      padding: 10px;
-      font-weight: bold;
-      font-size: 16px;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-top: 15px;
-    }
-
-    button:hover {
-      background-color: #e6c200;
-    }
-
-    .receipt {
-      margin-top: 15px;
-      padding: 10px;
-      background-color: #2b2b2b;
-      border: 1px dashed #ffd700;
-      border-radius: 5px;
-    }
-
-    .receipt p {
-      margin: 5px 0;
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .total {
-      color: #ffd700;
-      font-size: 18px;
-      font-weight: bold;
-    }
+    body { font-family: Arial, sans-serif; background-color: #121212; color: #ffffff; margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; }
+    header { width: 100%; max-width: 450px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 2px solid #ffd700; padding-bottom: 10px; }
+    h1 { color: #ffd700; margin: 0; font-size: 24px; }
+    nav a { color: #cccccc; text-decoration: none; margin-left: 10px; font-weight: bold; }
+    nav a.active, nav a:hover { color: #ffd700; }
+    .card { background-color: #1e1e1e; border: 2px solid #ffd700; border-radius: 10px; width: 100%; max-width: 450px; padding: 20px; box-sizing: border-box; }
+    h2 { color: #ffd700; margin-top: 0; text-align: center; font-size: 20px; }
+    .item-row { display: flex; justify-content: space-between; margin: 10px 0; padding-bottom: 5px; border-bottom: 1px solid #333333; }
+    label { cursor: pointer; font-weight: bold; color: #ffffff; }
+    button { width: 100%; background-color: #ffd700; color: #000000; border: none; padding: 10px; font-weight: bold; font-size: 16px; border-radius: 5px; cursor: pointer; margin-top: 15px; }
+    button:hover { background-color: #e6c200; }
+    .receipt { margin-top: 15px; padding: 10px; background-color: #2b2b2b; border: 1px dashed #ffd700; border-radius: 5px; }
   </style>
+  <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css" />
+  <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
 </head>
 <body>
 
@@ -129,36 +37,32 @@
     <p><strong>Menu:</strong></p>
 
     <div class="item-row">
-      <label><input type="checkbox" class="item" value="50"> Burger</label>
+      <label><input type="checkbox" id="item1" value="50"> Burger</label>
       <span>₱50.00</span>
     </div>
     <div class="item-row">
-      <label><input type="checkbox" class="item" value="30"> Fries</label>
+      <label><input type="checkbox" id="item2" value="30"> Fries</label>
       <span>₱30.00</span>
     </div>
     <div class="item-row">
-      <label><input type="checkbox" class="item" value="15"> Soda</label>
+      <label><input type="checkbox" id="item3" value="15"> Soda</label>
       <span>₱15.00</span>
     </div>
     <div class="item-row">
-      <label><input type="checkbox" class="item" value="40"> Hotdog</label>
+      <label><input type="checkbox" id="item4" value="40"> Hotdog</label>
       <span>₱40.00</span>
     </div>
     <div class="item-row">
-      <label><input type="checkbox" class="item" value="25"> Ice Cream</label>
+      <label><input type="checkbox" id="item5" value="25"> Ice Cream</label>
       <span>₱25.00</span>
     </div>
 
-    <button onclick="createOrder()">Create Order</button>
+    <button py-click="create_order">Create Order</button>
 
-    <div class="receipt">
-      <p>Subtotal: <span>₱<span id="subtotal">0.00</span></span></p>
-      <p>Tax (12%): <span>₱<span id="tax">0.00</span></span></p>
-      <p class="total">Total: <span>₱<span id="total">0.00</span></span></p>
-    </div>
+    <div class="receipt" id="show"></div>
   </div>
 
-  <script src="main.py"></script>
+  <script type="py" src="main.py" config='{"packages":[]}'></script>
 
 </body>
 </html>
