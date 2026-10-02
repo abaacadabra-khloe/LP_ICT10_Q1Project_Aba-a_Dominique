@@ -1,54 +1,37 @@
-function generateSKU() {
-    let category = document.getElementById('category').value;
-    let productName = document.getElementById('product_name').value;
-    let quantity = document.getElementById('quantity').value;
+from pyscript import display, document
 
-    if (!productName || !quantity) {
-        document.getElementById('sku_output').innerText = "Please fill in all fields.";
-        return;
-    }
+def SKU_generator(e):
+    document.getElementById('sku_output').innerHTML = ""
+    category = document.getElementById('category').value
+    product_name = document.getElementById('product_name').value
+    stock_qty = document.getElementById('quantity').value
+    sku = category[:3].upper() + "-" + product_name[:4].upper() + "-" + str(stock_qty)
+    display("SKU: ", sku, target='sku_output')
 
-    let sku = category.slice(0, 3).toUpperCase() + "-" + 
-              productName.slice(0, 4).toUpperCase() + "-" + 
-              quantity;
+def create_order(e):
+    # Get input values
+    prod1 = document.getElementById("item1")
+    prod2 = document.getElementById("item2")
+    prod3 = document.getElementById("item3")
+    prod4 = document.getElementById("item4")
+    prod5 = document.getElementById("item5")
 
-    document.getElementById('sku_output').innerText = "SKU: " + sku;
-}
+   
+    subtotal = (float(prod1.value) * prod1.checked +
+                float(prod2.value) * prod2.checked +
+                float(prod3.value) * prod3.checked +
+                float(prod4.value) * prod4.checked +
+                float(prod5.value) * prod5.checked)
 
-function createOrder() {
-    let checkboxes = document.querySelectorAll('.item');
-    let subtotal = 0;
+    tax_rate = 0.12  # 12% VAT
+    tax = subtotal * tax_rate
+    total = subtotal + tax
 
-    checkboxes.forEach(box => {
-        if (box.checked) {
-            subtotal += parseFloat(box.value);
-        }
-    });
+    receipt = f"""
+    <h3>==== Receipt ====</h3>
+    <p>Subtotal: P{subtotal:.2f}</p>
+    <p>Tax: P{tax:.2f}</p>
+    <p><strong>Total: P{total:.2f}</strong></p>
+    """
 
-    let tax = subtotal * 0.12;
-    let total = subtotal + tax;
-
-    document.getElementById('subtotal').innerText = subtotal.toFixed(2);
-    document.getElementById('tax').innerText = tax.toFixed(2);
-    document.getElementById('total').innerText = total.toFixed(2);
-}
-
-function createOrder() {
-  let checkboxes = document.querySelectorAll('.item');
-  let subtotal = 0;
-
-  
-  checkboxes.forEach(box => {
-    if (box.checked) {
-      subtotal += parseFloat(box.value);
-    }
-  });
-
-  let tax = subtotal * 0.12;
-  let total = subtotal + tax;
-
-
-  document.getElementById('subtotal').innerText = subtotal.toFixed(2);
-  document.getElementById('tax').innerText = tax.toFixed(2);
-  document.getElementById('total').innerText = total.toFixed(2);
-}
+    document.getElementById("show").innerHTML = receipt
