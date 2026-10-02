@@ -9,7 +9,7 @@ def SKU_generator(e):
     display("SKU: ", sku, target='sku_output')
 
 def create_order(e):
-    # Get input values
+   
     prod1 = document.getElementById("item1")
     prod2 = document.getElementById("item2")
     prod3 = document.getElementById("item3")
@@ -23,7 +23,7 @@ def create_order(e):
                 float(prod4.value) * prod4.checked +
                 float(prod5.value) * prod5.checked)
 
-    tax_rate = 0.12  # 12% VAT
+    tax_rate = 0.12  
     tax = subtotal * tax_rate
     total = subtotal + tax
 
